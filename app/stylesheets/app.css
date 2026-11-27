@@ -137,6 +137,44 @@
 	padding: 0 4px;
 }
 
+/* On a phone the path keeps only the folder it is in, and the box it has
+   (what the buttons and the search box leave, 80px on a 400px card) can be
+   narrower than the folder's name: the name gives way, with an ellipsis,
+   rather than running out of the box. Enyo 1's flex box does not shrink what
+   it holds, so the path is a flex box of its own here. The 2011 WebKit of a
+   webOS phone knows no display: flex and keeps the box as it was. */
+.fm-compact .fm-crumbs {
+	display: flex;
+	align-items: center;
+	white-space: nowrap;
+}
+
+.fm-compact .fm-crumb {
+	flex: 0 1 auto;
+	min-width: 0;
+}
+
+.fm-compact .fm-crumb-gap {
+	flex: none;
+}
+
+/* The narrowest phones (Galaxy Nexus 400, Nexus 5 and Mi A1 415 CSS px):
+   the path gets 20px more from the search box, and the bottom bar's buttons,
+   which at 400px ran 11px past the edge with "Sort: Name", come in 2px each
+   side. */
+@media (max-width: 420px) {
+	.fm-compact .fm-search {
+		width: 110px;
+	}
+
+	.fm-compact .fm-bottom .enyo-button {
+		padding-left: 3px;
+		padding-right: 3px;
+		margin-left: 1px;
+		margin-right: 1px;
+	}
+}
+
 /* ---- folder tree (left) ---- */
 
 .fm-tree {
